@@ -1,0 +1,115 @@
+{% extends 'styles.html' %}
+ {% block content %}
+
+<!--{% if messages %}
+{% for msg in messages %}
+  <div class="alert alert-success alert-dismissable" aria-hidden="true" align="center">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    {{ msg}} </div>
+    {% endfor %}
+    {% endif %}*/-->
+    <div id="io" class="alert alert-success alert-dismissable" aria-hidden="true" align="center">
+<button type="button" class="close" data-dismiss="alert">X</button><span id="po"></span>    
+     </div>
+    
+
+<center>
+<div class="container">
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4 alert alert-info">
+<h1 align="center" class="wow bounceInRight" data-wow-delay="1.0s">استمارة طلب الاجازات</h1>
+<hr>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-7">
+<div style="background-color: white;border-radius:10px;" class="wow bounceIn" data-wow-delay="1.0s" >
+<form method="POST" id="contactForm" >
+{% csrf_token %}
+<div style="border:5px solid blue;padding: 2px;">
+<div class="form-inline wow bounceInRight" data-wow-delay="1.1s">
+
+<label class="control-label" for="ooo">المحترم</label><input type="text" class="input-xlarge" id="ooo" name="to_sir" required="" /><label class="control-label" for="ooo">:الى السيد</label>
+</div>
+<br>
+<label class="wow bounceInLeft" data-wow-delay="1.2s" >:السلام عليكم ورحمة اللة وبركاتة..اما بعد</label>
+<br>
+<div style="border:2px solid green;" >
+<div class="form-inline wow bounceIn" data-wow-delay="1.3s">
+<table summary="" cellspacing="5" >
+
+
+<tr><td><label class="control-label" for="f1" >:استثنائية للاسباب التالية</label></td><td><input type="text" name="typ_ho" class="input-xlarge" id="f1" required="" /></td><td><label class="control-label" for="f1" >:فارغب السماح لي باجازة</label></td></tr>
+
+</div></table>
+
+<table summary="" >
+<tr><td>
+<textarea rows="2" class="form-control" name="reso" style="width: 333px; height: 116px;" required="" ></textarea>
+</td></tr></table>
+<br>
+<table summary="" >
+<tr><td><span>يوم</span></td><td><input type="number" name="num_day" required=""  /></td><td><label>وذلك لمدة</label></td></tr></table>
+<br>
+<table summary="" >
+<tr><td>
+<input type="date" name="date_st" required="" /></td><td><label>:ابتدأة من</label></td></tr></table>
+<br>
+<table summary="" >
+<tr><td>
+<input type="text" class="form-control" name="adress" required="" /></td><td><label>:وعنواني اثناء الاجازة</label></td></tr>
+
+<tr><td>
+<input type="text" class="form-control" name="name_full" required="" /></td><td><label>:الاسم الكامل</label></td></tr>
+
+<tr><td>
+<input type="text" class="form-control" name="dgree" required="" /></td><td><label>:المرتبة</label></td></tr>
+<tr><td>
+<input type="text" class="form-control" readonly="" name="sign" value="{{user}}" /></td><td><label>:التوقيع</label></td></tr>
+
+<tr><td rowspan="2" align="center" colspan="1" >
+<br>
+<input type="submit"  value="ارسال" class="form-control btn-primary"  /></td></tr>
+</table>
+</div>
+</div>
+</form>
+</div>
+
+</div>
+
+</div></div>
+<script>
+//$("#io").hide();
+$(document).ready(function () {
+            // catch the form's submit event
+            $('#contactForm').submit(function () {
+                // create an AJAX call
+                $.ajax({
+                    data: $(this).serialize(), // get the form data
+                    type: $(this).attr('method'), // GET or POST
+                    url: "{% url 'req_holy' %}",
+                    // on success
+                    success: function (response) {
+                        //alert("تم ارسال الطلب"+response.num);
+                        $("#io").show();
+                        $("#po").html("<h5>"+response.um+"</h5>");
+                        $("#ppp").html(response.num);
+                    },
+                    // on error
+                    error: function (response) {
+                        // alert the error if any error occured
+                        alert(response.responseJSON.errors);
+                      
+                    }
+                });
+                return false;
+            });
+        })
+
+</script>
+
+
+{% endblock content %}

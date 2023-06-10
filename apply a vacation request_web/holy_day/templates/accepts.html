@@ -1,0 +1,41 @@
+{% extends 'styles.html' %}
+ {% block content %}
+{% if messages %}
+{% for msg in messages %}
+    <div class="alert alert-success alert-dismissable" aria-hidden="true" align="center">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    {{ msg}} </div>
+    {% endfor %}
+    {% endif %}
+
+<center>
+<div class="container">
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4 alert alert-info">
+<h1 align="center" class="wow bounceInRight">الاستجابات</h1>
+
+<hr>
+<h1>{{im}}</h1>
+
+<div style="background-color: white;border-radius:10px;" class="wow bounceInRight" >
+<table summary="" class="table table-striped table-bordered text-center" >
+<tr><th>delet</th><th> نوع الاستجابة</th><th>الطلب</th></tr>
+{% for d in sho_ac %}
+<tr><td><a class="btn-primary btn-lg btn-block" href="{% url 'dele' pro_del=d.pk %}" >حذف </a></td><td>{{d.agree}}</a></td><td id="u"><a href="{% url 'show_fil' pro_id=d.pk %}" > {{d.typ_holy}}</a>
+</td></tr>
+{% endfor %}
+</table>
+
+</div>
+
+
+
+
+</div></div></div>
+<script>
+
+</script>
+
+
+{% endblock content %}

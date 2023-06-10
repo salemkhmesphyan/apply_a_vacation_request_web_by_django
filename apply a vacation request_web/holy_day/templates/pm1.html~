@@ -1,0 +1,38 @@
+{% extends 'styles.html' %}
+ {% block content %}
+{% if messages %}
+{% for msg in messages %}
+    <div class="alert alert-success alert-dismissable wow bounceInRight" aria-hidden="true" align="center">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    {{ msg}} </div>
+    {% endfor %}
+    {% endif %}
+
+<center>
+<div class="wow bounceInRight" data-wow-delay="2s">
+<div class="container">
+<div class="row ">
+<div class="col-md-4"></div>
+<div class="col-md-4 alert alert-info">
+<h1 align="center" >تطبيق طلب الاجازات</h1>
+<hr>
+<br>
+<div class="well well-large">
+السلام عليكم ورحمة اللة وبركاتة
+</div>
+</div></div></div></div>
+<script>
+
+var o1=$("#ns").val();
+$("#gn").hide();
+$("#gn").val(o1);
+$("#ns").change(function () {
+var o1=$("#ns").val();
+//$("#oo,#oo2,#namestu,#row,#namerow").hide();
+$("#gn").val(o1);
+});
+
+</script>
+
+
+{% endblock content %}

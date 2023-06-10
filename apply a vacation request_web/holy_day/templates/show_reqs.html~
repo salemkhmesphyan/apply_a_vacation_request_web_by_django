@@ -1,0 +1,69 @@
+{% extends 'styles.html' %}
+ {% block content %}
+{% if messages %}
+{% for msg in messages %}
+    <div class="alert alert-success alert-dismissable" aria-hidden="true" align="center">
+<button type="button" class="close" data-dismiss="alert">X</button>    
+    {{ msg}} </div>
+    {% endfor %}
+    {% endif %}
+
+<center>
+<div class="container wow bounceInRight" data-wow-delay="0.5s">
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4 alert alert-info">
+<button type="button" class="close" data-dismiss="alert"><font color="red">X</font></button>
+<h1 align="center" class="wow bounceInRight" data-wow-delay="0.6s" >عرض الطلبات</h1>
+<hr>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-7">
+<hr>
+<h1 class="wow bounceInRight" data-wow-delay="0.7s" >الطلبات الجديدة</h1>
+<hr>
+<div style="background-color: white;border-radius:10px;" class="wow bounceInRight" data-wow-delay="0.8s" >
+<table summary="" class="table table-striped table-bordered text-center" >
+<tr><th>الطلب</th><th>نوعة</th><th>الوقت</th></tr>
+{% for d in sh1 %}
+<tr><td><a href="{% url 'show_msg' pro_name=d.pk %}" > {{d.typ_holy}}</a></td><td id="u">{{d.see}}
+</td><td>{{d.time1}}</td></tr>
+{% endfor %}
+</table>
+
+</div>
+<hr>
+<details>
+<summary><h1 class="btn-primary btn-lg btn-block" style="cursor:pointer;">الطلبات القديمة</h1>
+</summary>
+<hr>
+<div style="background-color: white;border-radius:10px;" class="wow fadeInUp" >
+<table summary="" class="table table-striped table-bordered text-center" >
+<tr><th>الطلب</th><th>نوعة</th><th>الوقت</th></tr>
+{% for d in sh2 %}
+<tr><td><a href="{% url 'show_fil' pro_id=d.pk %}" > {{d.typ_holy}}</a></td><td id="u">{{d.see}}
+</td><td>{{d.time1}}</td></tr>
+{% endfor %}
+</table>
+</details>
+</div>
+</div>
+
+</div>
+</div>
+<script>
+
+/*var o1=$("#u").html();
+if (o1=='0') {
+	$("#u").html("جديد");
+}
+else {
+	$("#u").html("قديم");
+}*/
+
+</script>
+
+
+{% endblock content %}
